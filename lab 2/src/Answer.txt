@@ -1,0 +1,6 @@
+In Java, it's not possible to create a constructor method to build a DVD based on its title and then another constructor method to build the DVD based on its category. This limitation arises because both methods would have the same input variable (e.g., a String parameter), causing Java to interpret them as identical methods.
+
+
+
+
+
