@@ -1,0 +1,53 @@
+Suggestion: Create a toString() method for the DigitalVideoDisc class. What should the return type of this method be?
+String
+Which classes consist of other classes? Checking all constructors of all classes if they initialize their components?
+Classes that consist of other classes: Cart, Store, CompactDisc.
+What happens if the passed object is not an instance of Media?
+-> The function will return false.
+@Override
+public int compareTo(Media other) {
+int titleComparison = this.title.compareTo(other.title);
+if (titleComparison != 0) {
+return titleComparison;
+}
+return Float.compare(other.cost, title.cost);
+}
+Which class should implement the Comparable interface?
+Media
+How should you implement the compareTo() method in those classes to reflect the desired ordering?
+CompareByTitle:
+@Override
+public int compareTo(Media media) {
+int result = this.getTitle().compareTo(media.getTitle());
+if (result == 0) {
+result = Float.compare(media2.getCost(), media1.getCost());
+}
+return result;
+}
+CompareByCost:
+@Override
+public int compareTo(Media media) {
+int result = Float.compare(media2.getCost(), media1.getCost());
+if (result == 0) {
+result = this.getTitle().compareTo(media.getTitle());
+}
+return result;
+}
+Can we have two ordering rules for an item (by title then cost, and by cost then title) if we use the Comparable interface approach?
+We cannot have both ordering rules for an item.
+Suppose DVDs have a different ordering rule compared to other media types, that is, by title, then decreasing length, then cost. How would you modify your code to accommodate this?
+@Override
+public int compareTo(Media media) {
+int result = this.getTitle().compareTo(media.getTitle());
+if (result == 0) {
+if (num1 == num2) {
+result=0;
+} else if (num1 < num2) {
+result=-1;
+} else {
+result=1;
+}
+if(result==0)result = Float.compare(media2.getCost(), media1.getCost());
+}
+return result;
+}
